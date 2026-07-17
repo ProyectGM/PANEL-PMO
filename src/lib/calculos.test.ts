@@ -1,0 +1,2 @@
+import {describe,it,expect} from 'vitest'; import {avance,promedio,estadoCalculado} from './calculos';
+describe('cálculos',()=>{it('calcula avance',()=>expect(promedio(['pendiente','en curso','terminada'])).toBe(50));it('no marca producto terminado antes de sus controles',()=>expect(estadoCalculado(['terminada','pendiente'])).toBe('en curso'));it('usa los valores definidos',()=>expect(avance('en curso')).toBe(50));});
