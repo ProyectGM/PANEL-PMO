@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { promedio, Estado } from './lib/calculos';
 import './styles.css';
@@ -22,11 +22,14 @@ const miembrosIniciales:Miembro[] = [{ nombre:'Ana Pérez', carga:60 }, { nombre
 const productosIniciales:Producto[] = [{ nombre:'Diagnóstico', descripcion:'Levantamiento y validación de requerimientos del proyecto.' }, { nombre:'Plan de trabajo', descripcion:'Metodología, actividades, responsables y fechas de ejecución.' }];
 const cls = (estado:Estado) => estado.replace(' ', '-');
 const formatoFecha = (fecha:string) => new Intl.DateTimeFormat('es-CL', { day:'2-digit', month:'short', year:'numeric' }).format(new Date(`${fecha}T00:00:00`));
+const claveDatos = 'pgp-panel-datos-v1';
+const cargarDatos = <T,>(campo:string, defecto:T):T => { try { const datos = JSON.parse(localStorage.getItem(claveDatos) || '{}'); return datos[campo] ?? defecto; } catch { return defecto; } };
 
 function App() {
-  const [vista, setVista] = useState('Resumen'); const [tareas, setTareas] = useState(tareasIniciales); const [miembros, setMiembros] = useState(miembrosIniciales); const [productos, setProductos] = useState(productosIniciales);
-  const [proyecto, setProyecto] = useState<Proyecto>({ nombre:'Implementación del modelo de gestión', inicio:'2026-07-01', fin:'2026-09-30', enlace:'', proximaReunion:'2026-07-17' });
-  const [busca, setBusca] = useState(''); const [filtro, setFiltro] = useState('Todas'); const [modal, setModal] = useState(false); const [actaModal, setActaModal] = useState(false); const [reunionRegistrada, setReunionRegistrada] = useState<Reunion>({ numero:'1', integrantes:'Ana Pérez, Diego Soto, Camila Rojas', fecha:'2026-07-10', enlace:'' });
+  const [vista, setVista] = useState('Resumen'); const [tareas, setTareas] = useState<Tarea[]>(() => cargarDatos('tareas', tareasIniciales)); const [miembros, setMiembros] = useState<Miembro[]>(() => cargarDatos('miembros', miembrosIniciales)); const [productos, setProductos] = useState<Producto[]>(() => cargarDatos('productos', productosIniciales));
+  const [proyecto, setProyecto] = useState<Proyecto>(() => cargarDatos('proyecto', { nombre:'Implementación del modelo de gestión', inicio:'2026-07-01', fin:'2026-09-30', enlace:'', proximaReunion:'2026-07-17' }));
+  const [busca, setBusca] = useState(''); const [filtro, setFiltro] = useState('Todas'); const [modal, setModal] = useState(false); const [actaModal, setActaModal] = useState(false); const [reunionRegistrada, setReunionRegistrada] = useState<Reunion>(() => cargarDatos('reunion', { numero:'1', integrantes:'Ana Pérez, Diego Soto, Camila Rojas', fecha:'2026-07-10', enlace:'' }));
+  useEffect(() => { localStorage.setItem(claveDatos, JSON.stringify({ proyecto, tareas, miembros, productos, reunion:reunionRegistrada })); }, [proyecto, tareas, miembros, productos, reunionRegistrada]);
   const visibles = useMemo(() => tareas.filter(t => (filtro === 'Todas' || t.estado === filtro) && t.titulo.toLowerCase().includes(busca.toLowerCase())), [tareas, filtro, busca]);
   const exportar = () => { const body = ['Título,Producto,Responsable,Estado,Inicio,Fin', ...visibles.map(t => [t.titulo,t.producto,t.responsable,t.estado,t.inicio,t.fin].map(valor => `"${valor}"`).join(','))].join('\n'); const enlace = document.createElement('a'); enlace.href = URL.createObjectURL(new Blob([body], { type:'text/csv' })); enlace.download = 'tareas.csv'; enlace.click(); };
   const descargarProyecto = () => { const datos = { proyecto, miembros, productos, tareas, reunion:reunionRegistrada, exportadoEn:new Date().toISOString() }; const enlace = document.createElement('a'); enlace.href = URL.createObjectURL(new Blob([JSON.stringify(datos, null, 2)], { type:'application/json' })); enlace.download = 'pgp-proyecto.json'; enlace.click(); };
