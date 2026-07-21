@@ -12,12 +12,15 @@
 
 /* Grilla horizontal tipo planilla: cada mes conserva un ancho legible. */
 .excel-timeline{min-width:0}
+.excel-timeline{max-height:620px;overflow:auto;position:relative}
 .excel-timeline .months{box-sizing:content-box;width:var(--ancho-cronograma);padding-left:300px;padding-right:100px;justify-content:initial}
+.excel-timeline .months{position:sticky;top:0;z-index:4;background:#fff;padding-top:4px}
 .excel-timeline .months span{text-align:center;border-left:1px solid #e1c95f;text-transform:capitalize}
 .excel-timeline .months .month-header{display:grid;gap:4px;font-size:13px}
 .excel-timeline .months .month-header b{font-weight:500}
 .excel-timeline .months .month-header small{display:flex;gap:0;font-size:9px;color:#8b7540}
 .excel-timeline .months .month-header i{flex:1;font-style:normal;border-left:1px solid #eadb92;padding-top:2px}
 .excel-timeline .row{grid-template-columns:300px var(--ancho-cronograma) 100px}
+.excel-timeline .row label{position:sticky;left:0;z-index:3;background:#fff;padding:3px 8px 3px 0}
 .excel-timeline .track{background-image:repeating-linear-gradient(90deg,#f3f5f3 0,#f3f5f3 6.7%,#dfe4e1 6.7%,#dfe4e1 6.9%)}
 .timeline .row .badge{padding:2px 5px;font-size:9px;line-height:1;white-space:nowrap}
