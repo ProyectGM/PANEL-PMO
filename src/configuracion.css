@@ -1,0 +1,7 @@
+.config-section{padding:0 0 24px;margin:0 0 25px;border-bottom:2px solid #e6b800}
+.config-section:last-child{padding-bottom:0;margin-bottom:0;border-bottom:0}
+.config-section h3{font-size:16px;line-height:1.25;margin:0 0 17px;color:#285044}
+.config-section p{font-size:14px;line-height:1.5}
+.config-section .add{display:flex;gap:9px;align-items:center;margin-top:14px}
+.config-section .add input{min-width:0;flex:1}
+@media(max-width:760px){.config-section .add{flex-wrap:wrap}.config-section .add input{min-width:100%}}
