@@ -3,8 +3,9 @@
 .track i.terminada{background:#20a464}
 
 /* Vista compacta para cronogramas extensos. */
-.timeline .row{padding:7px 0;gap:8px}
-.timeline .row label{line-height:1.2}
-.timeline .row label small{margin-top:2px}
-.timeline .track{height:10px}
-.timeline .track em{top:-4px;height:18px}
+.timeline .row{padding:3px 0;gap:8px;min-height:25px}
+.timeline .row label{line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.timeline .row label small,.timeline .row .badge small{display:none}
+.timeline .track{height:8px}
+.timeline .track em{top:-3px;height:14px}
+.timeline .row .badge{padding:3px 6px;font-size:10px;white-space:nowrap}
