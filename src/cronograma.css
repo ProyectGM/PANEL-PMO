@@ -8,4 +8,5 @@
 .timeline .row label small,.timeline .row .badge small{display:none}
 .timeline .track{height:6px}
 .timeline .track em{top:-2px;height:10px}
+.timeline .track em[style]{right:auto}
 .timeline .row .badge{padding:2px 5px;font-size:9px;line-height:1;white-space:nowrap}
