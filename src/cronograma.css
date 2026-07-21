@@ -20,7 +20,7 @@
 .excel-timeline .months .month-header b{font-weight:500}
 .excel-timeline .months .month-header small{display:flex;gap:0;font-size:9px;color:#8b7540}
 .excel-timeline .months .month-header i{flex:1;font-style:normal;border-left:1px solid #eadb92;padding-top:2px}
-.excel-timeline .row{grid-template-columns:300px var(--ancho-cronograma) 100px}
+.excel-timeline .row{width:calc(400px + var(--ancho-cronograma));min-width:calc(400px + var(--ancho-cronograma));grid-template-columns:300px var(--ancho-cronograma) 100px}
 .excel-timeline .row{position:relative}
 .excel-timeline .row label{position:-webkit-sticky!important;position:sticky!important;left:0!important;z-index:10;background:#fff;padding:3px 10px 3px 0;box-shadow:8px 0 8px -8px #4a5f57;isolation:isolate}
 .excel-timeline .track{background-image:repeating-linear-gradient(90deg,#f3f5f3 0,#f3f5f3 6.7%,#dfe4e1 6.7%,#dfe4e1 6.9%)}

@@ -6,6 +6,7 @@ import './theme.css';
 import './custom.css';
 import './cronograma.css';
 import './configuracion.css';
+import './tipografia.css';
 
 type Tipo = 'Ejecución' | 'Control de calidad' | 'Hito';
 type Tarea = { id:number; titulo:string; grupo?:string; producto:string; responsable:string; tipo:Tipo; prioridad:'Alta'|'Media'|'Baja'; estado:Estado; inicio:string; fin:string; ajuste?:string; riesgo?:string };
