@@ -9,4 +9,11 @@
 .timeline .track{height:6px}
 .timeline .track em{top:-2px;height:10px}
 .timeline .track em[style]{right:auto}
+
+/* Grilla horizontal tipo planilla: cada mes conserva un ancho legible. */
+.excel-timeline{min-width:0}
+.excel-timeline .months{box-sizing:content-box;width:var(--ancho-cronograma);padding-left:300px;padding-right:100px;justify-content:initial}
+.excel-timeline .months span{text-align:center;border-left:1px solid #e1c95f;text-transform:capitalize}
+.excel-timeline .row{grid-template-columns:300px var(--ancho-cronograma) 100px}
+.excel-timeline .track{background-image:repeating-linear-gradient(90deg,#f3f5f3 0,#f3f5f3 6.7%,#dfe4e1 6.7%,#dfe4e1 6.9%)}
 .timeline .row .badge{padding:2px 5px;font-size:9px;line-height:1;white-space:nowrap}
