@@ -1,3 +1,10 @@
 .track i.pendiente{background:#e53935}
 .track i.en-curso{background:#f6c515}
 .track i.terminada{background:#20a464}
+
+/* Vista compacta para cronogramas extensos. */
+.timeline .row{padding:7px 0;gap:8px}
+.timeline .row label{line-height:1.2}
+.timeline .row label small{margin-top:2px}
+.timeline .track{height:10px}
+.timeline .track em{top:-4px;height:18px}
